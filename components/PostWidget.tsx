@@ -4,7 +4,7 @@ import { getRecentPosts, getSimilarPosts } from '../services/index'
 import moment from 'moment'
 import Link from 'next/link'
 
-const PostWidget = ({ categories, slug }) => {
+const PostWidget = ({ categories, slug }: any) => {
   const [relatedPosts, setRelatedPosts] = useState([])
 
   useEffect(() => {
