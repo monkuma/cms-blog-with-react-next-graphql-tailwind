@@ -12,7 +12,7 @@ import { getPostDetails, getPosts } from '../../services'
 type category = {
   slug: string
 }
-type Props = {
+type Post = {
   post: {
     post: string
     author: string
@@ -20,7 +20,7 @@ type Props = {
     categories: category[]
   }
 }
-const PostDetails = ({ post }: Props) => {
+const PostDetails = ({ post }: Post) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
