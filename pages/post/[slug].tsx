@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Categories,
   PostWidget,
@@ -6,10 +6,21 @@ import {
   Author,
   CommentsForm,
   Comments,
-} from "../../components";
-import { getPostDetails, getPosts } from "../../services";
+} from '../../components'
+import { getPostDetails, getPosts } from '../../services'
 
-const PostDetails = ({ post }) => {
+type category = {
+  slug: string
+}
+type Props = {
+  post: {
+    post: string
+    author: string
+    slug: string
+    categories: category[]
+  }
+}
+const PostDetails = ({ post }: Props) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -31,22 +42,22 @@ const PostDetails = ({ post }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostDetails;
+export default PostDetails
 
 export async function getStaticProps({ params }) {
-  const data = await getPostDetails(params.slug);
+  const data = await getPostDetails(params.slug)
   return {
     props: { post: data },
-  };
+  }
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getPosts()
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
     fallback: false,
-  };
+  }
 }
