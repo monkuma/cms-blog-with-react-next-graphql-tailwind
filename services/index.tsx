@@ -1,6 +1,6 @@
-import { request, gql } from 'graphql-request'
+import { request, gql } from "graphql-request";
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string;
 
 export const getPosts = async () => {
   const query = gql`
@@ -31,12 +31,12 @@ export const getPosts = async () => {
         }
       }
     }
-  `
+  `;
 
-  const results = await request(graphqlAPI, query)
+  const results = await request(graphqlAPI, query);
 
-  return results.postsConnection.edges
-}
+  return results.postsConnection.edges;
+};
 
 export const getPostDetails = async (slug: string) => {
   const query = gql`
@@ -66,12 +66,12 @@ export const getPostDetails = async (slug: string) => {
         }
       }
     }
-  `
+  `;
 
-  const result = await request(graphqlAPI, query, { slug })
+  const result = await request(graphqlAPI, query, { slug });
 
-  return result.post
-}
+  return result.post;
+};
 
 export const getRecentPosts = async () => {
   const query = gql`
@@ -88,12 +88,12 @@ export const getRecentPosts = async () => {
 				slug
 			}
 		}
-	`
+	`;
 
-  const results = await request(graphqlAPI, query)
+  const results = await request(graphqlAPI, query);
 
-  return results.posts
-}
+  return results.posts;
+};
 
 export const getSimilarPosts = async (categories: string, slug: string) => {
   const query = gql`
@@ -113,11 +113,11 @@ export const getSimilarPosts = async (categories: string, slug: string) => {
         slug
       }
     }
-  `
-  const results = await request(graphqlAPI, query, { categories, slug })
+  `;
+  const results = await request(graphqlAPI, query, { categories, slug });
 
-  return results.posts
-}
+  return results.posts;
+};
 
 export const getCategories = async () => {
   const query = gql`
@@ -127,8 +127,16 @@ export const getCategories = async () => {
         slug
       }
     }
-  `
-  const results = await request(graphqlAPI, query)
+  `;
+  const results = await request(graphqlAPI, query);
 
-  return results.categories
-}
+  return results.categories;
+};
+
+export const submitComment = async (obj) => {
+  const result = await fetch("/api/comments", {
+    method: "POST",
+    body: JSON.stringify(obj),
+  });
+  return result.json();
+};
