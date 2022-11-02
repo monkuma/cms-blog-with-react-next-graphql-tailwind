@@ -1,14 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { GraphQLClient, gql } from "graphql";
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient, gql } from "graphql-request";
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT! as string;
+const graphcmsToken = process.env.GRAPHCMS_TOKEN! as string;
 
-export default function comments(req, res) {
-  const GraphQLClient = new GraphQLClient(graphqlAPI, {
+export default async function comments(req, res) {
+  const graphQLClient = new GraphQLClient(graphqlAPI, {
     headers: {
-      authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+      authorization: `Bearer ${graphcmsToken}`,
     },
   });
 
@@ -31,9 +31,13 @@ export default function comments(req, res) {
       }
     }
   `;
-
-  const result = await GraphQLClient.request(query, req.body);
-  return res.status(200).send(result);
+  try {
+    const result = await graphQLClient.request(query, req.body);
+    return res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
 }
 type Data = {
   name: string;

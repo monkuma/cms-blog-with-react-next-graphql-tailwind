@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { submitComment } from "../services";
-const CommentsForm = () => {
+const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false);
   const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -9,17 +9,18 @@ const CommentsForm = () => {
   const emailEl = useRef();
   const storeDataEl = useRef();
 
+  useEffect(() => {
+    setLocalStorage(window.localStorage);
+    nameEl.current.value = window.localStorage.getItem("name");
+    emailEl.current.value = window.localStorage.getItem("email");
+  }, []);
+
   const handleCommentSubmission = () => {
     setError(false);
     const { value: comment } = commentEl.current;
     const { value: name } = nameEl.current;
     const { value: email } = emailEl.current;
     const { checked: storeData } = storeDataEl.current;
-
-    useEffect(() => {
-      nameEl.current.value = window.localStorage.getItem("name");
-      emailEl.current.value = window.localStorage.getItem("email");
-    }, []);
 
     if (!comment || !name || !email) {
       setError(true);
@@ -32,8 +33,8 @@ const CommentsForm = () => {
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
     } else {
-      localStorage.remove("name", name);
-      localStorage.remove("email", email);
+      localStorage.removeItem("name", name);
+      localStorage.removeItem("email", email);
     }
 
     submitComment(commentObj).then((res) => {
@@ -45,7 +46,9 @@ const CommentsForm = () => {
   };
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4">Comment Form</h3>
+      <h3 className="text-xl mb-8 font-semibold border-b pb-4">
+        Leave a Reply
+      </h3>
       <div className="grid grid-cols-1 gap-4 mb-4">
         <textarea
           name="comment"
@@ -99,7 +102,9 @@ const CommentsForm = () => {
           Post Comment
         </button>
         {showSuccessMessage && (
-          <span className="text-xl float-right font-semibold mt-3 text-green-500"></span>
+          <span className="text-xl float-right font-semibold mt-3 text-green-500">
+            Comment Submitted for review
+          </span>
         )}
       </div>
     </div>
