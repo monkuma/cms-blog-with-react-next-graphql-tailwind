@@ -5,9 +5,9 @@ import { PostCard, Categories, Loader } from "../../components";
 import { Post, PostRap } from "../../models/Graph";
 import MyHead from "../../components/MyHead";
 
-const CategoryPost: React.FC = ({ posts }) => {
+const CategoryPost = ({ posts }: { posts: any }) => {
   const router = useRouter();
-  const metaFlag = posts.length !== 0 ? true : false;
+  const metaFlag = posts?.length !== 0 || undefined ? true : false;
   if (router.isFallback) {
     return <Loader />;
   }
@@ -45,9 +45,9 @@ const CategoryPost: React.FC = ({ posts }) => {
 export default CategoryPost;
 
 // Fetch data at build time
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: any }) {
   const poststmp = await getCategoryPost(params.slug);
-  const posts = poststmp.map((post) => post.node);
+  const posts = poststmp.map((post: any) => post.node);
 
   return {
     props: { posts },
@@ -59,7 +59,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const categories = await getCategories();
   return {
-    paths: categories.map(({ slug }) => ({ params: { slug } })),
+    paths: categories.map(({ slug }: { slug: any }) => ({ params: { slug } })),
     fallback: true,
   };
 }

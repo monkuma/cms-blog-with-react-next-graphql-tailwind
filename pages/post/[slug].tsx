@@ -52,7 +52,7 @@ const PostDetails: React.FC<PostRap> = ({ post }) => {
 
 export default PostDetails;
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: any }) {
   const data = await getPostDetails(params.slug);
   return {
     props: { post: data },
