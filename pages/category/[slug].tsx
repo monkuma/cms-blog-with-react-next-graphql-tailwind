@@ -7,19 +7,24 @@ import MyHead from "../../components/MyHead";
 
 const CategoryPost: React.FC = ({ posts }) => {
   const router = useRouter();
+  const metaFlag = posts.length !== 0 ? true : false;
   if (router.isFallback) {
     return <Loader />;
   }
 
   return (
     <>
-      {console.log(posts)}
-      <MyHead
-        pageTitle={posts[0].categories[0].slug}
-        pageDescription={`カテゴリ${posts[0].categories[0].slug}のページです`}
-        pagePath={`category/${posts[0].categories[0].slug}`}
-        // pageImg={post.featuredImage.url}
-      />
+      {metaFlag ? (
+        <MyHead
+          pageTitle={posts[0].categories[0].slug}
+          pageDescription={`カテゴリ${posts[0].categories[0].slug}のページです`}
+          pagePath={`category/${posts[0].categories[0].slug}`}
+          // pageImg={posts.featuredImage.url}
+        />
+      ) : (
+        <MyHead />
+      )}
+
       <div className="container mx-auto px-10 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="col-span-1 lg:col-span-8">
