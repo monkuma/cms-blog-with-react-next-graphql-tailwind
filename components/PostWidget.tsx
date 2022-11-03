@@ -5,7 +5,13 @@ import moment from "moment";
 import Link from "next/link";
 import Image from "next/image";
 
-const PostWidget = ({ categories, slug }: any) => {
+const PostWidget = ({
+  categories,
+  slug,
+}: {
+  categories: string[];
+  slug?: string;
+}) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
 
   useEffect(() => {
@@ -23,6 +29,7 @@ const PostWidget = ({ categories, slug }: any) => {
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">
         {slug ? "Related Posts" : "Recent Posts"}
       </h3>
+
       {relatedPosts.map((post: any, index: number) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">

@@ -9,45 +9,44 @@ import {
   Comments,
   Loader,
 } from "../../components";
+import MyHead from "../../components/MyHead";
+import { PostRap } from "../../models/Graph";
 import { getPostDetails, getPosts } from "../../services";
 
-type category = {
-  slug: string;
-};
-type Post = {
-  post: {
-    post: string;
-    author: string;
-    slug: string;
-    categories: category[];
-  };
-};
-const PostDetails = ({ post }: Post) => {
+const PostDetails: React.FC<PostRap> = ({ post }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <Loader />;
   }
   return (
-    <div className="container mx-auto px-10 mb-8">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
-          <PostDetail post={post} />
-          <Author author={post.author} />
-          <CommentsForm slug={post.slug} />
-          <Comments slug={post.slug} />
-        </div>
+    <>
+      <MyHead
+        pageTitle={post.title}
+        pageDescription={post.excerpt}
+        pagePath={`post/${post.slug}`}
+        pageImg={post.featuredImage.url}
+      />
+      <div className="container mx-auto px-10 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="col-span-1 lg:col-span-8">
+            <PostDetail post={post} />
+            {/* <Author author={post.author} /> */}
+            <CommentsForm slug={post.slug} />
+            <Comments slug={post.slug} />
+          </div>
 
-        <div className="col-span-1 lg:col-span-4">
-          <div className="relative lg:sticky top-8">
-            <PostWidget
-              slug={post.slug}
-              categories={post.categories.map((category) => category.slug)}
-            />
-            <Categories />
+          <div className="col-span-1 lg:col-span-4">
+            <div className="relative lg:sticky top-8">
+              <PostWidget
+                slug={post.slug}
+                categories={post.categories.map((category) => category.slug)}
+              />
+              <Categories />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -63,7 +62,9 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const posts = await getPosts();
   return {
-    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
+    paths: posts.map(({ node: { slug } }: { node: { slug: string } }) => ({
+      params: { slug },
+    })),
     fallback: true,
   };
 }

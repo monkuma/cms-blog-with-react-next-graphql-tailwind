@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { getCategories } from '../services'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { getCategories } from "../services";
 
 const Header = () => {
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories))
-  }, [])
+    getCategories().then((newCategories) => setCategories(newCategories));
+  }, []);
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -14,7 +14,7 @@ const Header = () => {
         <div className="md:float-left block ">
           <Link href="/">
             <span className="cursor-pointer font-bold text-4xl text-white">
-              Graph Blog
+              Kumamos Blog
             </span>
           </Link>
         </div>
@@ -29,7 +29,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

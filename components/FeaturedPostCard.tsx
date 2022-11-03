@@ -2,8 +2,9 @@ import React from "react";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
+import { Post } from "../models/Graph";
 
-const FeaturedPostCard = ({ post }) => (
+const FeaturedPostCard: React.FC<{ post: Post }> = ({ post }) => (
   <div className="relative h-72">
     <div
       className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72"

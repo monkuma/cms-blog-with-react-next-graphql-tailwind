@@ -2,10 +2,10 @@ import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { getComments } from "../services";
 import parse from "html-react-parser";
+import { Comment } from "../models/Comment";
 
-const Comments = ({ slug }) => {
+const Comments: React.FC<{ slug: string }> = ({ slug }) => {
   const [comments, setComments] = useState([]);
-
   useEffect(() => {
     getComments({ slug }).then((result) => setComments(result));
   }, []);
@@ -17,11 +17,11 @@ const Comments = ({ slug }) => {
           <h3 className="text-xl mb-8 font-semibold border-b pb-4">
             {comments.length} Comments
           </h3>
-          {comments.map((comment, index) => (
+          {comments.map((comment: Comment, index: number) => (
             <div key={index} className="border-b border-gray-100 mb-4 pb-4">
               <p className="mb-4">
                 <span className="font-semibold">{comment.name}</span> on{" "}
-                {moment(comment.createdAt).format("YYYY MM DD")}
+                {moment(comment.createdAt).format("YYYY年MM月DD日 HH:mm")}
               </p>
               <p className="whitespace-pre-line text-gray-600 w-full">
                 {parse(comment.comment)}

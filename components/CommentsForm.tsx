@@ -1,40 +1,42 @@
 import React, { useState, useEffect, useRef } from "react";
 import { submitComment } from "../services";
-const CommentsForm = ({ slug }) => {
-  const [error, setError] = useState(false);
-  const [localStorage, setLocalStorage] = useState(null);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const commentEl = useRef();
-  const nameEl = useRef();
-  const emailEl = useRef();
-  const storeDataEl = useRef();
+import { Comment } from "../models/Comment";
+
+const CommentsForm: React.FC<{ slug: string }> = ({ slug }) => {
+  const [error, setError] = useState<boolean>(false);
+  const [localStorage, setLocalStorage] = useState<Storage | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+  const commentEl = useRef<HTMLTextAreaElement>(null);
+  const nameEl = useRef<HTMLInputElement>(null);
+  const emailEl = useRef<HTMLInputElement>(null);
+  const storeDataEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setLocalStorage(window.localStorage);
-    nameEl.current.value = window.localStorage.getItem("name");
-    emailEl.current.value = window.localStorage.getItem("email");
+    nameEl.current!.value = window.localStorage.getItem("name") as string;
+    emailEl.current!.value = window.localStorage.getItem("email") as string;
   }, []);
 
   const handleCommentSubmission = () => {
     setError(false);
-    const { value: comment } = commentEl.current;
-    const { value: name } = nameEl.current;
-    const { value: email } = emailEl.current;
-    const { checked: storeData } = storeDataEl.current;
+    const { value: comment } = commentEl.current as HTMLTextAreaElement;
+    const { value: name } = nameEl.current as HTMLInputElement;
+    const { value: email } = emailEl.current as HTMLInputElement;
+    const { checked: storeData } = storeDataEl.current as HTMLInputElement;
 
     if (!comment || !name || !email) {
       setError(true);
       return;
     }
 
-    const commentObj = { comment, name, email, slug };
+    const commentObj: Comment = { comment, name, email, slug };
 
     if (storeData) {
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
+      localStorage!.setItem("name", name);
+      localStorage!.setItem("email", email);
     } else {
-      localStorage.removeItem("name", name);
-      localStorage.removeItem("email", email);
+      localStorage!.removeItem("name");
+      localStorage!.removeItem("email");
     }
 
     submitComment(commentObj).then((res) => {

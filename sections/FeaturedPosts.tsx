@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { FeaturedPostCard } from "../components";
+import { Post } from "../models/Graph";
 import { getFeaturedPosts } from "../services";
 
 const responsive = {
@@ -24,7 +25,7 @@ const responsive = {
   },
 };
 
-const FeaturedPosts = () => {
+const FeaturedPosts: React.FC = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
 
