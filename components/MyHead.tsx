@@ -27,15 +27,20 @@ const MyHead: React.FC<MetaData> = ({
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="icon" href="/favicon.png" />
-        <meta property="og:site_name" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={`kumamos.blog${url}`} />
-        <meta property="og:title" content={title} />
-        <meta property="og:image" content={img} />
+        <head prefix="og:http://ogp.me/ns#">
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0"
+          />
+          <title>{title}</title>
+          <meta name="description" content={description} />
+          <link rel="icon" href="/favicon.png" />
+          <meta property="og:site_name" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={`https://kumamos.blog${url}`} />
+          <meta property="og:title" content={title} />
+          <meta property="og:image" content={img} />
+        </head>
       </Head>
     </>
   );
