@@ -30,28 +30,31 @@ const PostWidget = ({
         {slug ? "Related Posts" : "Recent Posts"}
       </h3>
 
-      {relatedPosts.map((post: any, index: number) => (
-        <div key={index} className="flex items-center w-full mb-4">
-          <div className="w-16 flex-none">
-            <Image
-              src={post.featuredImage.url}
-              alt={post.title}
-              height={60}
-              width={60}
-              unoptimized
-              className="align-middle rounded-full"
-            />
+      {relatedPosts
+        .slice(0)
+        .reverse()
+        .map((post: any, index: number) => (
+          <div key={index} className="flex items-center w-full mb-4">
+            <div className="w-16 flex-none">
+              <Image
+                src={post.featuredImage.url}
+                alt={post.title}
+                height={60}
+                width={60}
+                unoptimized
+                className="align-middle rounded-full"
+              />
+            </div>
+            <div className="flex-grow ml-4">
+              <p className="text-gray-500 font-xs">
+                {moment(post.createdAt).format("YYYY MM DD")}
+              </p>
+              <Link href={`/post/${post.slug}`} key={index} className="text-md">
+                {post.title}
+              </Link>
+            </div>
           </div>
-          <div className="flex-grow ml-4">
-            <p className="text-gray-500 font-xs">
-              {moment(post.createdAt).format("YYYY MM DD")}
-            </p>
-            <Link href={`/post/${post.slug}`} key={index} className="text-md">
-              {post.title}
-            </Link>
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

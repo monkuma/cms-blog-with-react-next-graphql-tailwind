@@ -1,10 +1,9 @@
-import Head from "next/head";
 import { PostCard, PostWidget, Categories } from "../components/";
 import MyHead from "../components/MyHead";
 import FeaturedPosts from "../sections/FeaturedPosts";
 import { getPosts } from "../services";
 
-export default function Home({ posts }: any) {
+export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8">
       <MyHead />
