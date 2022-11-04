@@ -1,0 +1,13 @@
+.post_content {
+  p {
+    margin-bottom: 10px !important;
+  }
+
+  code {
+    background-color: lightgray;
+    display: inline-block;
+    padding: 0.2em 1em;
+    border-radius: 5px;
+    white-space: pre-wrap;
+  }
+}

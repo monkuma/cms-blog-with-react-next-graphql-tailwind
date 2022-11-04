@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import parse from "html-react-parser";
 import { PostRap } from "../models/Graph";
+import PostDetailStyle from "./postDetail.module.scss";
 
 const PostDetail: React.FC<PostRap> = ({ post }) => {
   return (
@@ -48,7 +49,9 @@ const PostDetail: React.FC<PostRap> = ({ post }) => {
           </div>
         </div>
         <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-        {parse(post.content.html)}
+        <div className={PostDetailStyle.post_content}>
+          {parse(post.content.html)}
+        </div>
       </div>
     </div>
   );
