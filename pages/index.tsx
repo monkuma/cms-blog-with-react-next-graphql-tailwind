@@ -3,7 +3,7 @@ import MyHead from "../components/MyHead";
 import FeaturedPosts from "../sections/FeaturedPosts";
 import { getPosts } from "../services";
 
-export default function Home({ posts }) {
+export default function Home({ posts }: { posts: any }) {
   return (
     <div className="container mx-auto px-10 mb-8">
       <MyHead />
