@@ -33,7 +33,7 @@ const MyHead: React.FC<MetaData> = ({
         <link rel="icon" href="/favicon.png" />
         <meta property="og:site_name" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content={url} />
+        <meta property="og:url" content={`kumamos.blog${url}`} />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={img} />
       </Head>
