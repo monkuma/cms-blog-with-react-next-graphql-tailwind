@@ -1,6 +1,5 @@
 import Link from "next/link";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getCategories } from "../services";
 
 const Categories: React.FC = () => {
