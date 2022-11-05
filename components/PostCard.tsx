@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import Link from "next/link";
 import { PostRap } from "../models/Graph";
+import Image from "next/image";
 
 const PostCard: React.FC<PostRap> = ({ post }) => {
   return (
@@ -20,11 +21,11 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
       </h1>
       <div className="block  lg:flex text-center items-center justify-center mb-8 w-full">
         <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-          <img
+          <Image
             src={post.author.photo.url}
             alt={post.author.name}
-            height="30px"
-            width="30px"
+            height={30}
+            width={30}
             className="align-middle rounded-full "
           />
           <p className="inline align-middle text-gray-700 ml-2 text-lg">
