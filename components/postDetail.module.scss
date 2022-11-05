@@ -1,6 +1,10 @@
 .post_content {
   p {
-    margin-bottom: 10px;
+    font-size: 115%;
+    padding: 0 0.5em;
+    margin-bottom: 1.5em;
+    line-height: 1.9;
+    color: #111;
   }
 
   code {
@@ -12,9 +16,34 @@
   }
 
   h3 {
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.75rem; /* 28px */
-    margin-bottom: 1.5rem; /* 24px */
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin: 1.1em 0;
     font-weight: 600;
+    background-color: dodgerblue;
+    color: antiquewhite;
+    padding: 0.5em 0.4em;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  a {
+    word-break: break-all;
+  }
+  a:hover {
+    opacity: 0.5;
+  }
+
+  strong,
+  em,
+  b {
+    padding: 0 0.4em;
+  }
+
+  img {
+    border: 1px solid #dadada;
+    border-bottom: 1px solid #757575;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0 0 0.5em 0.5em;
   }
 }

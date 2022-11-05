@@ -35,21 +35,24 @@ const PostWidget = ({
         .reverse()
         .map((post: any, index: number) => (
           <div key={index} className="flex items-center w-full mb-4">
-            <div className="w-16 flex-none">
-              <Image
-                src={post.featuredImage.url}
-                alt={post.title}
-                height={60}
-                width={60}
-                unoptimized
-                className="align-middle rounded-full"
-              />
-            </div>
-            <div className="flex-grow ml-4">
-              <p className="text-gray-500 font-xs">
-                {moment(post.createdAt).format("YYYY年 MM月DD日")}
-              </p>
+            <div className="w-16 flex-none hover:opacity-50">
               <Link href={`/post/${post.slug}`} key={index} className="text-md">
+                <Image
+                  src={post.featuredImage.url}
+                  alt={post.title}
+                  height={60}
+                  width={60}
+                  unoptimized
+                  className="align-middle rounded-full"
+                />
+              </Link>
+            </div>
+            <div className="flex-grow ml-4 hover:opacity-50">
+              <Link href={`/post/${post.slug}`} key={index} className="text-md">
+                <p className="text-gray-500 font-xs">
+                  {moment(post.createdAt).format("YYYY年 MM月DD日")}
+                </p>
+
                 {post.title}
               </Link>
             </div>
