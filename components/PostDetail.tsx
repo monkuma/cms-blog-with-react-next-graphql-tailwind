@@ -24,7 +24,7 @@ const PostDetail: React.FC<PostRap> = ({ post }) => {
               width="30px"
               className="align-middle rounded-full "
             />
-            <p className="inline align-middle text-gray-700 ml-2 text-lg font-mdedium">
+            <p className="inline align-middle text-gray-700 ml-2 text-lg font-medium">
               {post.author.name}
             </p>
           </div>
