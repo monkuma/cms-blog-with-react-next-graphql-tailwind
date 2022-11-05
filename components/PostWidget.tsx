@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getRecentPosts, getSimilarPosts } from "../services/index";
 import moment from "moment";
 import Link from "next/link";
