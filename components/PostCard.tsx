@@ -9,7 +9,7 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6  hover:opacity-50">
         <Link href={`/post/${post.slug}`}>
-          <img
+          <Image
             src={post.featuredImage.url}
             alt={post.title}
             className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
@@ -26,7 +26,6 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
             alt={post.author.name}
             height={30}
             width={30}
-            sizes={"100vw"}
             className="align-middle rounded-full "
           />
           <p className="inline align-middle text-gray-700 ml-2 text-lg">
