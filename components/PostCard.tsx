@@ -28,13 +28,13 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
             alt={post.author.name}
             height={30}
             width={30}
-            className="align-middle rounded-full "
+            className="align-middle rounded-full"
           />
           <p className="inline align-middle text-gray-700 ml-2 text-lg">
             {post.author.name}
           </p>
         </div>
-        <div className="font-medium text-gray-700 flex items-center ">
+        <div className="font-medium text-gray-700  ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 inline mr-2 text-pink-500"
@@ -49,7 +49,9 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <span>{moment(post.createdAt).format("YYYY年 MM月DD日 HH:mm")}</span>
+          <span className="align-middle">
+            {moment(post.createdAt).format("YYYY年 MM月DD日 HH:mm")}
+          </span>
         </div>
       </div>
       <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8 ">
