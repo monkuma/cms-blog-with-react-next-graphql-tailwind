@@ -41,7 +41,6 @@ const PostWidget = ({
                   alt={post.title}
                   height={60}
                   width={60}
-                  unoptimized
                   className="align-middle rounded-full"
                 />
               </Link>
@@ -51,7 +50,6 @@ const PostWidget = ({
                 <p className="text-gray-500 font-xs">
                   {moment(post.createdAt).format("YYYY年 MM月DD日")}
                 </p>
-
                 {post.title}
               </Link>
             </div>

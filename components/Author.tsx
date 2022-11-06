@@ -7,7 +7,6 @@ const Author: React.FC<{ author: Author }> = ({ author }) => (
     <div className="">
       <Image
         alt={author.name}
-        unoptimized
         width={100}
         height={100}
         className="align-middle rounded-full absolute left-0 right-0 -top-12 m-auto"

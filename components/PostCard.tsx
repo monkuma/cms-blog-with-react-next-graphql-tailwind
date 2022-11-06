@@ -12,6 +12,8 @@ const PostCard: React.FC<PostRap> = ({ post }) => {
           <Image
             src={post.featuredImage.url}
             alt={post.title}
+            height={1000}
+            width={1000}
             className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
           />
         </Link>
