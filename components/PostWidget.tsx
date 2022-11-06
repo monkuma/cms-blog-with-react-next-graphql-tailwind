@@ -25,9 +25,9 @@ const PostWidget = ({
 
   return (
     <div className="bg-white shadow-lg rounded-lg pb-12 p-8 mb-8">
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4">
+      <h2 className="text-xl mb-8 font-semibold border-b pb-4">
         {slug ? "Related Posts" : "Recent Posts"}
-      </h3>
+      </h2>
 
       {relatedPosts
         .slice(0)
