@@ -1,12 +1,15 @@
-import Head from "next/head";
-import React from "react";
+import Head from 'next/head'
+import React from 'react'
+
+const GSC_META_NAME = process.env.GSC_META_NAME as string
+const GSC_META_CONTENT = process.env.GSC_META_CONTENT as string
 
 type MetaData = {
-  pageTitle?: string;
-  pageDescription?: string;
-  pagePath?: string;
-  pageImg?: string;
-};
+  pageTitle?: string
+  pageDescription?: string
+  pagePath?: string
+  pageImg?: string
+}
 
 const MyHead: React.FC<MetaData> = ({
   pageTitle,
@@ -14,15 +17,15 @@ const MyHead: React.FC<MetaData> = ({
   pagePath,
   pageImg,
 }) => {
-  const defaultTitle = "Kumamos Blog";
-  const defaultDescription = "勉強したことを記録していくブログ";
-  const defaultUrl = "/";
-  const defaultImg = "/favicon.png";
+  const defaultTitle = 'Kumamos Blog'
+  const defaultDescription = '勉強したことを記録していくブログ'
+  const defaultUrl = '/'
+  const defaultImg = '/favicon.png'
 
-  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
-  const description = pageDescription ? pageDescription : defaultDescription;
-  const url = pagePath ? `/${pagePath}` : defaultUrl;
-  const img = pageImg ? pageImg : defaultImg;
+  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle
+  const description = pageDescription ? pageDescription : defaultDescription
+  const url = pagePath ? `/${pagePath}` : defaultUrl
+  const img = pageImg ? pageImg : defaultImg
 
   return (
     <>
@@ -36,9 +39,10 @@ const MyHead: React.FC<MetaData> = ({
         <meta property="og:url" content={`https://kumamos.blog${url}`} />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={img} />
+        <meta name={GSC_META_NAME} content={GSC_META_CONTENT} />
       </Head>
     </>
-  );
-};
+  )
+}
 
-export default MyHead;
+export default MyHead
