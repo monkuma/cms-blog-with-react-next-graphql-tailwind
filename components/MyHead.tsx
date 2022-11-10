@@ -39,7 +39,10 @@ const MyHead: React.FC<MetaData> = ({
         <meta property="og:url" content={`https://kumamos.blog${url}`} />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={img} />
-        <meta name={GSC_META_NAME} content={GSC_META_CONTENT} />
+        <meta
+          name="google-site-verification"
+          content="aWGL7eWh-1LaqBPFHkzohHVAO9lYg9TarImnCEDkcYg"
+        />
       </Head>
     </>
   )
