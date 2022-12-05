@@ -1,7 +1,7 @@
-import { PostCard, PostWidget, Categories } from "../components/";
-import MyHead from "../components/MyHead";
-import FeaturedPosts from "../sections/FeaturedPosts";
-import { getPosts } from "../services";
+import { PostCard, PostWidget, Categories } from '../components/'
+import MyHead from '../components/MyHead'
+import FeaturedPosts from '../sections/FeaturedPosts'
+import { getPosts } from '../services'
 
 export default function Home({ posts }: { posts: any }) {
   return (
@@ -25,12 +25,13 @@ export default function Home({ posts }: { posts: any }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
+  const posts = (await getPosts()) || []
   return {
     props: { posts },
-  };
+    revalidate: 3 * 60,
+  }
 }

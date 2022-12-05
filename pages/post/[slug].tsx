@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import React from "react";
+import { useRouter } from 'next/router'
+import React from 'react'
 import {
   Categories,
   PostWidget,
@@ -8,15 +8,15 @@ import {
   CommentsForm,
   Comments,
   Loader,
-} from "../../components";
-import MyHead from "../../components/MyHead";
-import { PostRap } from "../../models/Graph";
-import { getPostDetails, getPosts } from "../../services";
+} from '../../components'
+import MyHead from '../../components/MyHead'
+import { PostRap } from '../../models/Graph'
+import { getPostDetails, getPosts } from '../../services'
 
 const PostDetails: React.FC<PostRap> = ({ post }) => {
-  const router = useRouter();
+  const router = useRouter()
   if (router.isFallback) {
-    return <Loader />;
+    return <Loader />
   }
   return (
     <>
@@ -47,25 +47,30 @@ const PostDetails: React.FC<PostRap> = ({ post }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default PostDetails;
+export default PostDetails
 
 export async function getStaticProps({ params }: { params: any }) {
-  const data = await getPostDetails(params.slug);
-  return {
-    props: { post: data },
-    notFound: !data,
-  };
+  const data = await getPostDetails(params.slug)
+  try {
+    return {
+      props: { post: data },
+      revalidate: 3 * 60,
+      notFound: !data,
+    }
+  } catch (error) {
+    return { notFound: true }
+  }
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getPosts()
   return {
     paths: posts.map(({ node: { slug } }: { node: { slug: string } }) => ({
       params: { slug },
     })),
-    fallback: true,
-  };
+    fallback: 'blocking',
+  }
 }
